@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Seecret ✨</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+
+<body>
+
+    <!-- Видео фон -->
+    <div class="video-bg">
+        <video id="video-woman" autoplay muted loop playsinline>
+            <source src="assets/video/woman.mp4" type="video/mp4">
+        </video>
+        <video id="video-man" autoplay muted loop playsinline>
+            <source src="assets/video/man.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+    <div class="app">
+
+        <!-- Шапка -->
+        <div class="dashboard-header">
+            <div class="dashboard-logo">✨ Magic Seecret</div>
+            <div class="header-actions">
+                <button class="icon-btn" onclick="showTab('tab-messages')">
+                    💌
+                    <span class="badge" id="messages-badge">0</span>
+                </button>
+                <button class="icon-btn" onclick="showTab('tab-profile')">
+                    👤
+                </button>
+            </div>
+        </div>
+        <!-- Навигация -->
+        <div class="bottom-nav">
+            <button class="nav-btn active" onclick="showTab('tab-search')" id="nav-search">
+                <span class="nav-icon">🔍</span>
+                <span class="nav-label">Поиск</span>
+            </button>
+            <button class="nav-btn" onclick="showTab('tab-favorites')" id="nav-favorites">
+                <span class="nav-icon">❤️</span>
+                <span class="nav-label">Избранное</span>
+            </button>
+            <button class="nav-btn" onclick="showTab('tab-messages')" id="nav-messages">
+                <span class="nav-icon">💌</span>
+                <span class="nav-label">Сообщения</span>
+            </button>
+            <button class="nav-btn" onclick="showTab('tab-profile')" id="nav-profile">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Профиль</span>
+            </button>
+        </div>
+
+        <!-- Поиск -->
+        <div class="tab active" id="tab-search">
+            <div class="search-container">
+                <div class="search-header">
+                    <h2>Для тебя <span>🔥</span></h2>
+                    <button class="filter-btn">⚙️ Фильтры</button>
+                </div>
+                <div class="cards-stack" id="cards-stack">
+                    <!-- Карточки добавятся динамически -->
+                    <div class="loading-cards">
+                        <div class="loading-spinner"></div>
+                        <p>Ищем для тебя...</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn dislike" onclick="handleDislike()">
+                        👎
+                    </button>
+                    <button class="action-btn favorite" onclick="handleFavorite()">
+                        ❤️
+                    </button>
+                    <button class="action-btn like" onclick="handleLike()">
+                        👍
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Избранное -->
+        <div class="tab hidden" id="tab-favorites">
+            <div class="favorites-container">
+                <h2>Избранное ❤️</h2>
+                <div class="favorites-grid" id="favorites-grid">
+                    <div class="empty-state">
+                        <div class="empty-icon">❤️</div>
+                        <p>Пока нет избранных</p>
+                        <span>Добавляй понравившихся людей!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Сообщения -->
+        <div class="tab hidden" id="tab-messages">
+            <div class="messages-container">
+                <h2>Сообщения 💌</h2>
+                <div class="messages-list" id="messages-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">💌</div>
+                        <p>Пока нет сообщений</p>
+                        <span>Найди партнёра и начни общение!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Профиль -->
+        <div class="tab hidden" id="tab-profile">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="profile-avatar">
+                        <span>👤</span>
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profile-nickname">Загрузка...</h2>
+                        <p id="profile-city">...</p>
+                    </div>
+                    <button class="edit-btn" onclick="editProfile()">
+                        ✏️ Изменить
+                    </button>
+                </div>
+
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="stat-likes">0</span>
+                        <span class="stat-label">Лайков</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="stat-matches">0</span>
+                        <span class="stat-label">Матчей</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="stat-views">0</span>
+                        <span class="stat-label">Просмотров</span>
+                    </div>
+                </div>
+                <div class="profile-media-section">
+                    <h3>Мои фото и видео</h3>
+                    <div class="media-grid" id="profile-media-grid">
+                        <div class="add-media-btn" onclick="addMedia()">
+                            <span>+</span>
+                            <p>Добавить</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-subscription">
+                    <div class="subscription-card" id="subscription-card">
+                        <span class="sub-icon">💎</span>
+                        <div class="sub-info">
+                            <h3>Бесплатный план</h3>
+                            <p>Улучши для полного доступа</p>
+                        </div>
+                        <button class="upgrade-btn" onclick="showPremium()">
+                            Улучшить
+                        </button>
+                    </div>
+                </div>
+                <button class="btn-danger" onclick="logout()">
+                    Выйти
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/telegram.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
