@@ -286,16 +286,17 @@
         </div>
 
         <!-- Превью -->
+
         <div class="screen" id="screen-preview" style="display:none;">
             <div class="preview-screen">
                 <h2>нашли твоих 🔥</h2>
-                <p class="sub">разблокируй чтобы увидеть</p>
+                <p class="sub">вот кто рядом с тобой!</p>
                 <div class="preview-cards" id="preview-cards"></div>
                 <div class="preview-cta">
                     <h3>хочешь познакомиться? 😏</h3>
-                    <p>оформи подписку</p>
-                    <button class="btn-primary" onclick="showScreen('screen-premium')">
-                        разблокировать 🖤
+                    <p>напиши им — оплата только за общение</p>
+                    <button class="btn-primary" onclick="goToDashboard()">
+                        войти в Sx7 😈
                     </button>
                 </div>
             </div>
@@ -312,67 +313,66 @@
                         <div class="plan-header">
                             <span>😈</span>
                             <h3>Sinner</h3>
+                            <div class="plan-price">150 ⭐<span>/мес</span></div>
+                            <ul class="plan-features">
+                                <li>✅ безлимит мэтчей</li>
+                                <li>✅ все фото и видео</li>
+                                <li>✅ чат</li>
+                            </ul>
                         </div>
-                        <div class="plan-price">299 ₽<span>/мес</span></div>
-                        <ul class="plan-features">
-                            <li>✅ безлимит мэтчей</li>
-                            <li>✅ все фото и видео</li>
-                            <li>✅ чат</li>
-                        </ul>
+
+                        <div class="plan popular" onclick="selectPlan('deadly', this)">
+                            <div class="popular-badge">топ 🔥</div>
+                            <div class="plan-header">
+                                <span>🔥</span>
+                                <h3>Deadly</h3>
+                            </div>
+                            <div class="plan-price">350 ⭐<span>/мес</span></div>
+                            <ul class="plan-features">
+                                <li>✅ всё из Sinner</li>
+                                <li>✅ карта без ограничений</li>
+                                <li>✅ кто смотрел профиль</li>
+                                <li>✅ невидимый режим</li>
+                            </ul>
+                        </div>
+                        <div class="plan elite" onclick="selectPlan('cardinal', this)">
+                            <div class="plan-header">
+                                <span>👑</span>
+                                <h3>Cardinal</h3>
+                            </div>
+                            <div class="plan-price">500 ⭐<span>/мес</span></div>
+                            <ul class="plan-features">
+                                <li>✅ всё из Deadly</li>
+                                <li>✅ секретные чаты 💀</li>
+                                <li>✅ анонимный режим</li>
+                                <li>✅ приоритет в поиске</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="plan popular" onclick="selectPlan('deadly', this)">
-                        <div class="popular-badge">топ 🔥</div>
-                        <div class="plan-header">
-                            <span>🔥</span>
-                            <h3>Deadly</h3>
-                        </div>
-                        <div class="plan-price">690 ₽<span>/мес</span></div>
-                        <ul class="plan-features">
-                            <li>✅ всё из Sinner</li>
-                            <li>✅ карта без ограничений</li>
-                            <li>✅ кто смотрел профиль</li>
-                            <li>✅ невидимый режим</li>
-                        </ul>
-                    </div>
-                    <div class="plan elite" onclick="selectPlan('cardinal', this)">
-                        <div class="plan-header">
-                            <span>👑</span>
-                            <h3>Cardinal</h3>
-                        </div>
-                        <div class="plan-price">990 ₽<span>/мес</span></div>
-                        <ul class="plan-features">
-                            <li>✅ всё из Deadly</li>
-                            <li>✅ секретные чаты 💀</li>
-                            <li>✅ анонимный режим</li>
-                            <li>✅ приоритет в поиске</li>
-                        </ul>
-                    </div>
+                    <button class="btn-primary" id="pay-btn" onclick="handlePayment()">
+                        оформить 😈
+                    </button>
                 </div>
-
-                <button class="btn-primary" id="pay-btn" onclick="handlePayment()">
-                    оформить 😈
-                </button>
             </div>
+
+            <!-- Логин -->
+            <div class="screen" id="screen-login" style="display:none;">
+                <div class="login">
+                    <button class="back-btn" onclick="showScreen('screen-landing')">←</button>
+                    <h2>добро пожаловать 🖤</h2>
+                    <p class="sub">войди через telegram</p>
+                    <button class="btn-primary" onclick="loginWithTelegram()">
+                        войти 😈
+                    </button>
+                </div>
+            </div>
+
         </div>
 
-        <!-- Логин -->
-        <div class="screen" id="screen-login" style="display:none;">
-            <div class="login">
-                <button class="back-btn" onclick="showScreen('screen-landing')">←</button>
-                <h2>добро пожаловать 🖤</h2>
-                <p class="sub">войди через telegram</p>
-                <button class="btn-primary" onclick="loginWithTelegram()">
-                    войти 😈
-                </button>
-            </div>
-        </div>
-
-    </div>
-
-    <script src="js/telegram.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/app.js"></script>
+        <script src="js/telegram.js"></script>
+        <script src="js/api.js"></script>
+        <script src="js/app.js"></script>
 </body>
 
 </html>

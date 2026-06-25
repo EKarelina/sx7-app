@@ -538,3 +538,7 @@ function switchAppLang(lang) {
     state.selectedOptions.lang = lang
     localStorage.setItem('sx7_lang', lang)
 }
+
+function goToDashboard() {
+    window.location.href = 'dashboard.html';
+}
