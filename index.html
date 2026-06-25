@@ -4,132 +4,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Seecret ✨</title>
+    <title>Sx7</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><text y='32' font-size='32'>😈</text></svg>">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 
 <body>
 
-    <!-- Видео фон -->
-    <div class="video-bg">
-        <video id="video-woman" autoplay muted loop playsinline>
-            <source src="assets/video/woman.mp4" type="video/mp4">
-        </video>
-        <video id="video-man" autoplay muted loop playsinline>
-            <source src="assets/video/man.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
-    </div>
-
-    <!-- Презентация -->
+    <!-- ПРЕЗЕНТАЦИЯ -->
     <div class="presentation" id="presentation">
-
-        <!-- Частицы -->
         <div class="particles" id="particles"></div>
 
-        <!-- Слайд 1 -->
-        <div class="slide slide-bg-1 active" id="slide-1" onclick="nextSlide()">
-            <div class="slide-icon">💎</div>
-            <h1>Только для <span>избранных</span></h1>
-            <div class="neon-line"></div>
-            <p>Magic Seecret</p>
-            <div class="slide-progress">
-                <div class="progress-dot active"></div>
-                <div class="progress-dot"></div>
-                <div class="progress-dot"></div>
-                <div class="progress-dot"></div>
+        <div class="slide active" id="slide-1" onclick="nextSlide()">
+            <div class="slide-content">
+                <div class="slide-logo">Sx7</div>
+                <h1>найди <span>своих</span></h1>
+                <p class="slide-sub">для тех кто понимает 😈</p>
             </div>
-            <div class="slide-tap">нажми чтобы продолжить</div>
-        </div>
-        <!-- Слайд 2 -->
-        <div class="slide slide-bg-2" id="slide-2" onclick="nextSlide()">
-            <div class="slide-icon">✨</div>
-            <h1><span>Магия</span> притяжения</h1>
-            <div class="neon-line"></div>
-            <p>Почувствуй силу желания</p>
             <div class="slide-progress">
-                <div class="progress-dot"></div>
-                <div class="progress-dot active"></div>
-                <div class="progress-dot"></div>
-                <div class="progress-dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
-            <div class="slide-tap">нажми чтобы продолжить</div>
-        </div>
-        <!-- Слайд 3 -->
-        <div class="slide slide-bg-3" id="slide-3" onclick="nextSlide()">
-            <div class="slide-icon">🖤</div>
-            <h1>Расскажи <span>Scarlett</span> свои самые сокровенные желания</h1>
-            <div class="neon-line"></div>
-            <p>ИИ который тебя понимает</p>
-            <div class="slide-progress">
-                <div class="progress-dot"></div>
-                <div class="progress-dot"></div>
-                <div class="progress-dot active"></div>
-                <div class="progress-dot"></div>
-            </div>
-            <div class="slide-tap">нажми чтобы продолжить</div>
+            <div class="slide-tap">тапни 👆</div>
         </div>
 
-        <!-- Слайд 4 -->
-        <div class="slide slide-bg-4" id="slide-4" onclick="startApp()">
-            <div class="slide-icon">🔥</div>
-            <h1>Позволь себе <span>больше</span></h1>
-            <div class="neon-line"></div>
-            <p>Твоя история начинается</p>
-            <div class="slide-progress">
-                <div class="progress-dot"></div>
-                <div class="progress-dot"></div>
-                <div class="progress-dot"></div>
-                <div class="progress-dot active"></div>
+        <div class="slide" id="slide-2" onclick="nextSlide()">
+            <div class="slide-content">
+                <div class="slide-icon">📍</div>
+                <h1>твои люди <span>рядом</span></h1>
+                <p class="slide-sub">видишь кто вокруг на карте</p>
             </div>
-            <div class="slide-tap">нажми чтобы начать</div>
+            <div class="slide-progress">
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="slide-tap">тапни 👆</div>
         </div>
 
+        <div class="slide" id="slide-3" onclick="nextSlide()">
+            <div class="slide-content">
+                <div class="slide-icon">🖤</div>
+                <h1>расскажи <span>кто ты</span></h1>
+                <p class="slide-sub">наш ИИ найдёт твой тип</p>
+            </div>
+            <div class="slide-progress">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="slide-tap">тапни 👆</div>
+        </div>
+
+        <div class="slide" id="slide-4" onclick="startApp()">
+            <div class="slide-content">
+                <div class="slide-icon">😈</div>
+                <h1>добро пожаловать <span>в Sx7</span></h1>
+                <p class="slide-sub">только для своих</p>
+                <button class="start-btn">войти 🖤</button>
+            </div>
+            <div class="slide-progress">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot active"></div>
+            </div>
+        </div>
     </div>
-    <!-- Основное приложение -->
-    <div class="app">
+
+    <!-- ПРИЛОЖЕНИЕ -->
+    <div class="app" id="app" style="display:none;">
 
         <!-- Лендинг -->
-        <div class="screen hidden" id="screen-landing">
+        <div class="screen" id="screen-landing">
             <div class="landing">
-                <div class="logo">
-                    <div class="logo-emblem">
-                        <span class="logo-emblem-icon">✨</span>
-                    </div>
-                    <h1 class="logo-text">Magic Seecret</h1>
-                    <p class="logo-sub">Только для избранных</p>
+                <div class="lang-switch" style="align-self:flex-end;margin-bottom:10px;">
+                    <button class="lang-btn active" id="landing-lang-ru" onclick="switchAppLang('ru')">🇷🇺</button>
+                    <button class="lang-btn" id="landing-lang-en" onclick="switchAppLang('en')">🇬🇧</button>
                 </div>
 
-                <div class="landing-divider">
-                    <div class="landing-divider-line"></div>
-                    <span class="landing-divider-icon">💎</span>
-                    <div class="landing-divider-line"></div>
+                <div class="landing-logo">
+                    <h1>Sx7</h1>
+                    <p id="landing-sub">найди своих 🖤</p>
                 </div>
+
                 <div class="landing-preview">
-                    <div class="preview-blur-card">
-                        <div class="preview-blur-avatar">👩</div>
-                        <div class="preview-blur-info">
-                            <div class="preview-blur-name">A*****a, 26</div>
-                            <div class="preview-blur-detail"></div>
+                    <div class="preview-card blur">
+                        <div class="preview-avatar">👤</div>
+                        <div class="preview-info">
+                            <div class="preview-name">a*****a</div>
+                            <div class="preview-type">INFP • альтушка</div>
                         </div>
                         <div class="preview-lock">🔒</div>
                     </div>
-                    <div class="preview-blur-card">
-                        <div class="preview-blur-avatar">👨</div>
-                        <div class="preview-blur-info">
-                            <div class="preview-blur-name">M*****s, 31</div>
-                            <div class="preview-blur-detail"></div>
+                    <div class="preview-card blur">
+                        <div class="preview-avatar">👤</div>
+                        <div class="preview-info">
+                            <div class="preview-name">d*****k</div>
+                            <div class="preview-type">ENFJ • нефор</div>
                         </div>
                         <div class="preview-lock">🔒</div>
                     </div>
                     <p class="preview-count">
-                        уже <span>2,847</span> избранных
+                        <span>1,337</span> своих уже здесь
                     </p>
                 </div>
-                <div class="landing-buttons">
+
+                <div class="landing-btns">
                     <button class="btn-primary" onclick="showScreen('screen-onboarding')">
-                        войти в мир желаний
+                        войти 😈
                     </button>
                     <button class="btn-secondary" onclick="showScreen('screen-login')">
                         уже есть аккаунт
@@ -139,216 +128,242 @@
         </div>
 
         <!-- Онбординг -->
-        <div class="screen hidden" id="screen-onboarding">
+        <div class="screen" id="screen-onboarding" style="display:none;">
             <div class="onboarding">
                 <button class="back-btn" onclick="showScreen('screen-landing')">←</button>
-                <h2>Как начнём?</h2>
-                <p class="subtitle">выбери свой путь</p>
+                <h2 id="onboarding-title">как начнём? 😈</h2>
+                <p class="sub" id="onboarding-sub">выбери путь</p>
 
                 <div class="choice-cards">
                     <div class="choice-card" onclick="showScreen('screen-ai-chat')">
-                        <div class="choice-icon">🖤</div>
-                        <h3>Поговори со Scarlett</h3>
-                        <p>Расскажи свои желания — Scarlett подберёт идеального партнёра</p>
-                        <span class="choice-badge">Быстро</span>
+                        <div class="choice-icon">🤖</div>
+                        <h3 id="ai-title">поговори с ИИ</h3>
+                        <p id="ai-desc">расскажи кто ты — найдём твоих людей</p>
+                        <span class="badge">быстро</span>
                     </div>
+
                     <div class="choice-card" onclick="showScreen('screen-register')">
-                        <div class="choice-icon">✨</div>
-                        <h3>Создать профиль</h3>
-                        <p>Заполни анкету и найди партнёра своей мечты</p>
-                        <span class="choice-badge">Подробно</span>
+                        <div class="choice-icon">📝</div>
+                        <h3 id="form-title-card">заполни анкету</h3>
+                        <p id="form-desc">подробно о себе и своих предпочтениях</p>
+                        <span class="badge">подробно</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Чат со Scarlett -->
-        <div class="screen hidden" id="screen-ai-chat">
+        <!-- Чат с ИИ -->
+        <div class="screen" id="screen-ai-chat" style="display:none;">
             <div class="ai-chat">
                 <div class="chat-header">
                     <button class="back-btn" onclick="showScreen('screen-onboarding')">←</button>
                     <div class="chat-header-info">
-                        <div class="ai-avatar">🖤</div>
+                        <div class="ai-avatar">😈</div>
                         <div>
-                            <h3>Scarlett</h3>
+                            <h3>Sx7 AI</h3>
                             <span class="online">● онлайн</span>
                         </div>
                     </div>
                 </div>
+
                 <div class="chat-messages" id="chat-messages">
                     <div class="message bot-message">
-                        <div class="message-bubble">
-                            Привет... 🖤 Я Scarlett. Расскажи мне свои самые сокровенные желания — я найду именно то,
-                            что тебе нужно 😏
+                        <div class="message-bubble" id="first-message">
+                            ну чё 😈 давно тебя ждали... расскажи кто ты на самом деле 🖤
                         </div>
                     </div>
                 </div>
 
                 <div class="chat-input">
-                    <input type="text" id="user-input" placeholder="Расскажи Scarlett..."
-                        onkeypress="handleEnter(event)">
+                    <input type="text" id="user-input" placeholder="пиши..." onkeypress="handleEnter(event)">
                     <button class="send-btn" onclick="sendMessage()">→</button>
                 </div>
             </div>
         </div>
+
         <!-- Регистрация -->
-        <div class="screen hidden" id="screen-register">
+        <div class="screen" id="screen-register" style="display:none;">
             <div class="register">
-                <button class="back-btn" onclick="showScreen('screen-onboarding')">←</button>
-                <h2>Создай профиль ✨</h2>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <button class="back-btn" onclick="showScreen('screen-onboarding')">←</button>
+                    <div class="lang-switch">
+                        <button class="lang-btn active" id="form-lang-ru" onclick="switchFormLang('ru')">🇷🇺</button>
+                        <button class="lang-btn" id="form-lang-en" onclick="switchFormLang('en')">🇬🇧</button>
+                    </div>
+                </div>
+                <h2 id="form-title">расскажи о себе 🖤</h2>
 
                 <div class="form">
                     <div class="form-group">
-                        <label>Никнейм</label>
-                        <input type="text" id="nickname" placeholder="Как тебя называть?">
+                        <label id="label-nick">ник</label>
+                        <input type="text" id="nickname" placeholder="как тебя называть?">
                     </div>
 
                     <div class="form-group">
-                        <label>Возраст</label>
-                        <input type="number" id="age" placeholder="Твой возраст" min="18" max="99">
+                        <label id="label-age">возраст</label>
+                        <input type="number" id="age" placeholder="сколько тебе?" min="18" max="99">
                     </div>
 
                     <div class="form-group">
-                        <label>Город</label>
-                        <input type="text" id="city" placeholder="Твой город">
+                        <label id="label-city">город</label>
+                        <input type="text" id="city" placeholder="откуда ты?">
                     </div>
+
                     <div class="form-group">
-                        <label>Пол</label>
-                        <div class="radio-group">
-                            <button class="radio-btn" onclick="selectGender('female', this)">👩 Женщина</button>
-                            <button class="radio-btn" onclick="selectGender('male', this)">👨 Мужчина</button>
-                            <button class="radio-btn" onclick="selectGender('other', this)">✨ Другое</button>
+                        <label id="label-philosophy">философия</label>
+                        <div class="radio-group wrap" id="group-philosophy">
+                            <button class="radio-btn" onclick="selectOption('philosophy', 'нефор', this)">нефор</button>
+                            <button class="radio-btn"
+                                onclick="selectOption('philosophy', 'альтушка', this)">альтушка</button>
+                            <button class="radio-btn"
+                                onclick="selectOption('philosophy', 'е-гёрл', this)">е-гёрл</button>
+                            <button class="radio-btn" onclick="selectOption('philosophy', 'дарк', this)">дарк</button>
+                            <button class="radio-btn" onclick="selectOption('philosophy', 'эстет', this)">эстет</button>
+                            <button class="radio-btn" onclick="selectOption('philosophy', 'рандом', this)">рандом
+                                😅</button>
+                        </div>
+                        <input type="text" id="philosophy-custom" placeholder="или напиши своё... 🖤"
+                            oninput="state.selectedOptions.philosophy = this.value" style="margin-top:10px;">
+                    </div>
+
+                    <div class="form-group">
+                        <label id="label-looking">кого ищешь</label>
+                        <div class="radio-group wrap" id="group-looking">
+                            <button class="radio-btn"
+                                onclick="selectOption('looking', 'мальчика', this)">мальчика</button>
+                            <button class="radio-btn"
+                                onclick="selectOption('looking', 'девочку', this)">девочку</button>
+                            <button class="radio-btn" onclick="selectOption('looking', 'всех', this)">всех 👀</button>
+                            <button class="radio-btn" onclick="selectOption('looking', 'группу', this)">группу
+                                😈</button>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Ищу</label>
-                        <div class="radio-group">
-                            <button class="radio-btn" onclick="selectLooking('female', this)">👩 Женщину</button>
-                            <button class="radio-btn" onclick="selectLooking('male', this)">👨 Мужчину</button>
-                            <button class="radio-btn" onclick="selectLooking('both', this)">💫 Всех</button>
-                            <button class="radio-btn" onclick="selectLooking('group', this)">👥 Группу</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Формат встречи</label>
-                        <div class="radio-group">
-                            <button class="radio-btn" onclick="selectMeeting('coffee', this)">☕ Кофе</button>
-                            <button class="radio-btn" onclick="selectMeeting('walk', this)">🚶 Прогулка</button>
-                            <button class="radio-btn" onclick="selectMeeting('party', this)">🎉 Вечеринка</button>
-                            <button class="radio-btn" onclick="selectMeeting('home', this)">🏠 Домой сразу</button>
+                        <label id="label-format">что ищешь</label>
+                        <div class="radio-group wrap" id="group-format">
+                            <button class="radio-btn" onclick="selectOption('format', 'потусить', this)">потусить
+                                🤙</button>
+                            <button class="radio-btn" onclick="selectOption('format', 'что-то большее', this)">что-то
+                                большее 👀</button>
+                            <button class="radio-btn" onclick="selectOption('format', 'приключение', this)">приключение
+                                🌙</button>
+                            <button class="radio-btn" onclick="selectOption('format', 'своих людей', this)">своих людей
+                                🖤</button>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Формат отношений</label>
-                        <div class="radio-group">
-                            <button class="radio-btn" onclick="selectRelation('one', this)">👫 Один партнёр</button>
-                            <button class="radio-btn" onclick="selectRelation('mjm', this)">🔥 МЖМ</button>
-                            <button class="radio-btn" onclick="selectRelation('zhm', this)">💋 ЖМЖ</button>
-                            <button class="radio-btn" onclick="selectRelation('group', this)">👥 Группа</button>
-                            <button class="radio-btn" onclick="selectRelation('swingers', this)">✨ Свингеры</button>
+                        <label id="label-vibe">на чём торчишь</label>
+                        <div class="radio-group wrap" id="group-vibe">
+                            <button class="radio-btn" onclick="selectOption('vibe', 'музыка', this)">музыка 🎵</button>
+                            <button class="radio-btn" onclick="selectOption('vibe', 'адреналин', this)">адреналин
+                                ⚡</button>
+                            <button class="radio-btn" onclick="selectOption('vibe', 'эстетика', this)">эстетика
+                                🖤</button>
+                            <button class="radio-btn" onclick="selectOption('vibe', 'люди', this)">люди 👥</button>
+                            <button class="radio-btn" onclick="selectOption('vibe', 'всё сразу', this)">всё сразу
+                                😈</button>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label>Фото профиля</label>
+                        <label id="label-photo">фото</label>
                         <div class="photo-upload" onclick="uploadPhoto()">
                             <div id="photo-preview" class="photo-placeholder">
-                                📸 Загрузить фото
+                                📸 добавить фото
                             </div>
                         </div>
                         <input type="file" id="photo-input" accept="image/*,video/*" style="display:none"
                             onchange="previewPhoto(this)">
                     </div>
 
-                    <button class="btn-primary" onclick="submitProfile()">
-                        создать профиль 🔥
+                    <button class="btn-primary" id="submit-btn" onclick="submitProfile()">
+                        погнали 🔥
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Превью результатов -->
-        <div class="screen hidden" id="screen-preview">
-            <div class="preview">
-                <div class="preview-header">
-                    <h2>Нашли для тебя 🔥</h2>
-                    <p>разблокируй чтобы увидеть</p>
-                </div>
+        <!-- Превью -->
+        <div class="screen" id="screen-preview" style="display:none;">
+            <div class="preview-screen">
+                <h2>нашли твоих 🔥</h2>
+                <p class="sub">разблокируй чтобы увидеть</p>
                 <div class="preview-cards" id="preview-cards"></div>
-
                 <div class="preview-cta">
-                    <h3>Хочешь познакомиться? 😏</h3>
-                    <p>Оформи подписку и получи полный доступ</p>
+                    <h3>хочешь познакомиться? 😏</h3>
+                    <p>оформи подписку</p>
                     <button class="btn-primary" onclick="showScreen('screen-premium')">
-                        открыть доступ 💎
+                        разблокировать 🖤
                     </button>
                 </div>
             </div>
         </div>
 
         <!-- Премиум -->
-        <div class="screen hidden" id="screen-premium">
+        <div class="screen" id="screen-premium" style="display:none;">
             <div class="premium">
                 <button class="back-btn" onclick="showScreen('screen-preview')">←</button>
-                <h2>Выбери план 💎</h2>
+                <h2>выбери план 😈</h2>
 
                 <div class="plans">
-                    <div class="plan" onclick="selectPlan('premium', this)">
+                    <div class="plan" onclick="selectPlan('sinner', this)">
                         <div class="plan-header">
-                            <span class="plan-icon">💎</span>
-                            <h3>Premium</h3>
+                            <span>😈</span>
+                            <h3>Sinner</h3>
                         </div>
-                        <div class="plan-price">2 990 ₽<span>/месяц</span></div>
+                        <div class="plan-price">299 ₽<span>/мес</span></div>
                         <ul class="plan-features">
-                            <li>✅ Все фото и видео</li>
-                            <li>✅ Безлимитный чат</li>
-                            <li>✅ Приоритет в поиске</li>
-                        </ul>
-                    </div>
-                    <div class="plan popular" onclick="selectPlan('vip', this)">
-                        <div class="popular-badge">Популярный</div>
-                        <div class="plan-header">
-                            <span class="plan-icon">👑</span>
-                            <h3>VIP</h3>
-                        </div>
-                        <div class="plan-price">7 990 ₽<span>/месяц</span></div>
-                        <ul class="plan-features">
-                            <li>✅ Всё из Premium</li>
-                            <li>✅ Групповые чаты</li>
-                            <li>✅ Топ в поиске</li>
-                            <li>✅ Персональный ИИ подбор</li>
+                            <li>✅ безлимит мэтчей</li>
+                            <li>✅ все фото и видео</li>
+                            <li>✅ чат</li>
                         </ul>
                     </div>
 
-                    <div class="plan elite" onclick="selectPlan('elite', this)">
+                    <div class="plan popular" onclick="selectPlan('deadly', this)">
+                        <div class="popular-badge">топ 🔥</div>
                         <div class="plan-header">
-                            <span class="plan-icon">💫</span>
-                            <h3>Elite</h3>
+                            <span>🔥</span>
+                            <h3>Deadly</h3>
                         </div>
-                        <div class="plan-price">19 990 ₽<span>/месяц</span></div>
+                        <div class="plan-price">690 ₽<span>/мес</span></div>
                         <ul class="plan-features">
-                            <li>✅ Всё из VIP</li>
-                            <li>✅ Верификация ✅</li>
-                            <li>✅ Закрытые мероприятия</li>
-                            <li>✅ Личный менеджер</li>
+                            <li>✅ всё из Sinner</li>
+                            <li>✅ карта без ограничений</li>
+                            <li>✅ кто смотрел профиль</li>
+                            <li>✅ невидимый режим</li>
+                        </ul>
+                    </div>
+                    <div class="plan elite" onclick="selectPlan('cardinal', this)">
+                        <div class="plan-header">
+                            <span>👑</span>
+                            <h3>Cardinal</h3>
+                        </div>
+                        <div class="plan-price">990 ₽<span>/мес</span></div>
+                        <ul class="plan-features">
+                            <li>✅ всё из Deadly</li>
+                            <li>✅ секретные чаты 💀</li>
+                            <li>✅ анонимный режим</li>
+                            <li>✅ приоритет в поиске</li>
                         </ul>
                     </div>
                 </div>
+
                 <button class="btn-primary" id="pay-btn" onclick="handlePayment()">
-                    оформить подписку 💎
+                    оформить 😈
                 </button>
             </div>
         </div>
 
         <!-- Логин -->
-        <div class="screen hidden" id="screen-login">
+        <div class="screen" id="screen-login" style="display:none;">
             <div class="login">
                 <button class="back-btn" onclick="showScreen('screen-landing')">←</button>
-                <h2>Добро пожаловать ✨</h2>
-                <p class="subtitle">войди через telegram</p>
+                <h2>добро пожаловать 🖤</h2>
+                <p class="sub">войди через telegram</p>
                 <button class="btn-primary" onclick="loginWithTelegram()">
-                    войти через Telegram
+                    войти 😈
                 </button>
             </div>
         </div>

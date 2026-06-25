@@ -4,170 +4,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Seecret ✨</title>
+    <title>Sx7</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 
 <body>
 
-    <!-- Видео фон -->
-    <div class="video-bg">
-        <video id="video-woman" autoplay muted loop playsinline>
-            <source src="assets/video/woman.mp4" type="video/mp4">
-        </video>
-        <video id="video-man" autoplay muted loop playsinline>
-            <source src="assets/video/man.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
-    </div>
-    <div class="app">
+    <div class="app" id="app">
 
         <!-- Шапка -->
-        <div class="dashboard-header">
-            <div class="dashboard-logo">✨ Magic Seecret</div>
+        <div class="header">
+            <div class="header-logo">Sx7</div>
             <div class="header-actions">
                 <button class="icon-btn" onclick="showTab('tab-messages')">
                     💌
-                    <span class="badge" id="messages-badge">0</span>
+                    <span class="badge-count" id="msg-badge" style="display:none">0</span>
                 </button>
-                <button class="icon-btn" onclick="showTab('tab-profile')">
-                    👤
-                </button>
+                <button class="icon-btn" onclick="showTab('tab-profile')">👤</button>
             </div>
         </div>
-        <!-- Навигация -->
-        <div class="bottom-nav">
-            <button class="nav-btn active" onclick="showTab('tab-search')" id="nav-search">
-                <span class="nav-icon">🔍</span>
-                <span class="nav-label">Поиск</span>
-            </button>
-            <button class="nav-btn" onclick="showTab('tab-favorites')" id="nav-favorites">
-                <span class="nav-icon">❤️</span>
-                <span class="nav-label">Избранное</span>
-            </button>
-            <button class="nav-btn" onclick="showTab('tab-messages')" id="nav-messages">
-                <span class="nav-icon">💌</span>
-                <span class="nav-label">Сообщения</span>
-            </button>
-            <button class="nav-btn" onclick="showTab('tab-profile')" id="nav-profile">
-                <span class="nav-icon">👤</span>
-                <span class="nav-label">Профиль</span>
-            </button>
-        </div>
 
-        <!-- Поиск -->
-        <div class="tab active" id="tab-search">
-            <div class="search-container">
+        <!-- Контент -->
+        <div class="content">
+
+            <!-- Карта -->
+            <div class="tab-content active" id="tab-map">
+                <div id="map"></div>
+                <div class="map-btns">
+                    <button class="map-btn" onclick="centerMap()">📍</button>
+                </div>
+            </div>
+
+            <!-- Поиск -->
+            <div class="tab-content" id="tab-search" style="display:none;">
                 <div class="search-header">
-                    <h2>Для тебя <span>🔥</span></h2>
-                    <button class="filter-btn">⚙️ Фильтры</button>
+                    <h2>для тебя 🔥</h2>
+                    <button class="filter-btn" onclick="showFilters()">⚙️</button>
                 </div>
                 <div class="cards-stack" id="cards-stack">
-                    <!-- Карточки добавятся динамически -->
-                    <div class="loading-cards">
-                        <div class="loading-spinner"></div>
-                        <p>Ищем для тебя...</p>
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>ищем твоих...</p>
                     </div>
                 </div>
-
-                <div class="action-buttons">
-                    <button class="action-btn dislike" onclick="handleDislike()">
-                        👎
-                    </button>
-                    <button class="action-btn favorite" onclick="handleFavorite()">
-                        ❤️
-                    </button>
-                    <button class="action-btn like" onclick="handleLike()">
-                        👍
-                    </button>
+                <div class="action-btns">
+                    <button class="action-btn dislike" onclick="handleDislike()">👎</button>
+                    <button class="action-btn super" onclick="handleSuper()">❤️</button>
+                    <button class="action-btn like" onclick="handleLike()">👍</button>
                 </div>
             </div>
-        </div>
-        <!-- Избранное -->
-        <div class="tab hidden" id="tab-favorites">
-            <div class="favorites-container">
-                <h2>Избранное ❤️</h2>
-                <div class="favorites-grid" id="favorites-grid">
-                    <div class="empty-state">
-                        <div class="empty-icon">❤️</div>
-                        <p>Пока нет избранных</p>
-                        <span>Добавляй понравившихся людей!</span>
-                    </div>
+
+            <!-- Истории -->
+            <div class="tab-content" id="tab-stories" style="display:none;">
+                <div class="search-header">
+                    <h2>истории 📸</h2>
+                    <button class="filter-btn" onclick="addStory()">+ добавить</button>
+                </div>
+                <div class="empty-state">
+                    <div class="empty-icon">📸</div>
+                    <p>историй нет</p>
+                    <span>добавь свою!</span>
                 </div>
             </div>
-        </div>
 
-        <!-- Сообщения -->
-        <div class="tab hidden" id="tab-messages">
-            <div class="messages-container">
-                <h2>Сообщения 💌</h2>
+            <!-- Сообщения -->
+            <div class="tab-content" id="tab-messages" style="display:none;">
+                <div class="search-header">
+                    <h2>сообщения 💌</h2>
+                </div>
                 <div class="messages-list" id="messages-list">
                     <div class="empty-state">
                         <div class="empty-icon">💌</div>
-                        <p>Пока нет сообщений</p>
-                        <span>Найди партнёра и начни общение!</span>
+                        <p>пока пусто</p>
+                        <span>найди своих и начни общаться!</span>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Профиль -->
-        <div class="tab hidden" id="tab-profile">
-            <div class="profile-container">
+
+            <!-- Профиль -->
+            <div class="tab-content" id="tab-profile" style="display:none;">
                 <div class="profile-header">
-                    <div class="profile-avatar" id="profile-avatar">
-                        <span>👤</span>
-                    </div>
+                    <div class="profile-avatar" id="profile-avatar">👤</div>
                     <div class="profile-info">
-                        <h2 id="profile-nickname">Загрузка...</h2>
+                        <h2 id="profile-nick">загрузка...</h2>
                         <p id="profile-city">...</p>
                     </div>
-                    <button class="edit-btn" onclick="editProfile()">
-                        ✏️ Изменить
-                    </button>
+                    <button class="edit-btn" onclick="editProfile()">✏️</button>
                 </div>
 
                 <div class="profile-stats">
                     <div class="stat">
-                        <span class="stat-number" id="stat-likes">0</span>
-                        <span class="stat-label">Лайков</span>
+                        <span class="stat-num">0</span>
+                        <span class="stat-label">лайков</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number" id="stat-matches">0</span>
-                        <span class="stat-label">Матчей</span>
+                        <span class="stat-num">0</span>
+                        <span class="stat-label">мэтчей</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number" id="stat-views">0</span>
-                        <span class="stat-label">Просмотров</span>
+                        <span class="stat-num">0</span>
+                        <span class="stat-label">просмотров</span>
                     </div>
                 </div>
-                <div class="profile-media-section">
-                    <h3>Мои фото и видео</h3>
+
+                <div class="profile-media">
+                    <h3>мои фото и видео</h3>
                     <div class="media-grid" id="profile-media-grid">
-                        <div class="add-media-btn" onclick="addMedia()">
+                        <div class="add-media" onclick="addMedia()">
                             <span>+</span>
-                            <p>Добавить</p>
+                            <p>добавить</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="profile-subscription">
-                    <div class="subscription-card" id="subscription-card">
-                        <span class="sub-icon">💎</span>
-                        <div class="sub-info">
-                            <h3>Бесплатный план</h3>
-                            <p>Улучши для полного доступа</p>
-                        </div>
-                        <button class="upgrade-btn" onclick="showPremium()">
-                            Улучшить
-                        </button>
+                <div class="subscription-card">
+                    <span class="sub-icon">😈</span>
+                    <div class="sub-info">
+                        <h3>бесплатный план</h3>
+                        <p>улучши для полного доступа</p>
                     </div>
+                    <button class="upgrade-btn" onclick="showPremium()">апгрейд 🔥</button>
                 </div>
-                <button class="btn-danger" onclick="logout()">
-                    Выйти
-                </button>
+
+                <button class="btn-danger" onclick="logout()">выйти</button>
             </div>
+
+        </div>
+
+        <!-- Нижняя навигация -->
+        <div class="bottom-nav">
+            <button class="nav-btn active" id="nav-map" onclick="showTab('tab-map')">
+                <span>🗺️</span>
+                <p>карта</p>
+            </button>
+            <button class="nav-btn" id="nav-search" onclick="showTab('tab-search')">
+                <span>👥</span>
+                <p>поиск</p>
+            </button>
+            <button class="nav-btn" id="nav-stories" onclick="showTab('tab-stories')">
+                <span>📸</span>
+                <p>истории</p>
+            </button>
+            <button class="nav-btn" id="nav-messages" onclick="showTab('tab-messages')">
+                <span>💌</span>
+                <p>чаты</p>
+            </button>
+            <button class="nav-btn" id="nav-profile" onclick="showTab('tab-profile')">
+                <span>👤</span>
+                <p>профиль</p>
+            </button>
         </div>
 
     </div>
