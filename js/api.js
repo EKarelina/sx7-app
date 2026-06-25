@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://web-production-83150.up.railway.app';
 
 const api = {
     async register(data) {
