@@ -16,10 +16,18 @@ const api = {
 
     async sendAiMessage(message, history, lang = 'ru') {
         try {
+            const tg = window.Telegram?.WebApp;
+            const telegramId = tg?.initDataUnsafe?.user?.id || null;
+
             const response = await fetch(`${API_URL}/ai/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message, history, lang })
+                body: JSON.stringify({
+                    message,
+                    history,
+                    lang,
+                    telegram_id: telegramId
+                })
             });
             return await response.json();
         } catch (error) {
