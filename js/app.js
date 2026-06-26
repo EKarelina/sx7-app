@@ -210,12 +210,23 @@ async function sendMessage() {
     showTyping();
 
     try {
-        const result = await api.sendAiMessage(message, state.aiHistory, state.currentLang || 'ru');
+        const result = await api.sendAiMessage(
+            message,
+            state.aiHistory,
+            state.currentLang || 'ru'
+        );
         hideTyping();
 
         if (result?.response) {
             state.aiHistory = result.history || state.aiHistory;
             addMessage(result.response, 'bot');
+
+            if (result.profile_complete) {
+                setTimeout(async () => {
+                    addMessage('секунду... собираю твою анкету', 'bot');
+                    await autoSaveProfile(result.extracted_data);
+                }, 1000);
+            }
 
             if (result.show_preview) {
                 setTimeout(() => showPreviewDemo(), 1500);
@@ -223,7 +234,7 @@ async function sendMessage() {
         }
     } catch (error) {
         hideTyping();
-        addMessage('кайф 😈 а ещё что?', 'bot');
+        addMessage('что-то пошло не так, попробуй снова', 'bot');
     }
 }
 
@@ -541,4 +552,93 @@ function switchAppLang(lang) {
 
 function goToDashboard() {
     window.location.href = 'dashboard.html';
+}
+
+async function autoSaveProfile(extractedData) {
+    try {
+        const profileData = {
+            telegram_id: state.telegramUser?.id || 'test',
+            nickname: extractedData?.name || state.telegramUser?.first_name || 'аноним',
+            age: extractedData?.age || null,
+            city: extractedData?.city || null,
+            gender: extractedData?.gender || null,
+            philosophy: extractedData?.philosophy || null,
+            music: extractedData?.music || null,
+            looking_for: extractedData?.looking_for_gender || null,
+            format: extractedData?.looking_for || null,
+            vibe: extractedData?.vibe || null,
+            mbti: extractedData?.mbti || null,
+            lang: state.currentLang || 'ru'
+        };
+
+        await api.register(profileData);
+
+        // Показываем превью анкеты
+        showProfilePreview(profileData, extractedData);
+
+    } catch (error) {
+        console.error('Auto save error:', error);
+        // Всё равно показываем превью
+        showPreviewDemo();
+    }
+}
+
+function showProfilePreview(profileData, extractedData) {
+    // Создаём экран с превью анкеты
+    const screen = document.getElementById('screen-preview');
+
+    const previewContent = `
+        <div class="preview-screen">
+            <h2>${state.currentLang === 'ru' ? 'твоя анкета готова' : 'your profile is ready'}</h2>
+            <p class="sub">${state.currentLang === 'ru' ? 'вот что мы узнали' : 'here is what we learned'}</p>
+            
+            <div class="profile-preview-card">
+                <div class="profile-preview-item">
+                    <span class="preview-label">${state.currentLang === 'ru' ? 'ник' : 'nick'}</span>
+                    <span class="preview-value">${profileData.nickname}</span>
+                </div>
+                ${profileData.age ? `
+                <div class="profile-preview-item">
+                    <span class="preview-label">${state.currentLang === 'ru' ? 'возраст' : 'age'}</span>
+                    <span class="preview-value">${profileData.age}</span>
+                </div>` : ''}
+                ${profileData.city ? `
+                <div class="profile-preview-item">
+                    <span class="preview-label">${state.currentLang === 'ru' ? 'город' : 'city'}</span>
+                    <span class="preview-value">${profileData.city}</span>
+                </div>` : ''}
+                ${profileData.philosophy ? `
+                <div class="profile-preview-item">
+                    <span class="preview-label">${state.currentLang === 'ru' ? 'философия' : 'philosophy'}</span>
+                    <span class="preview-value">${profileData.philosophy}</span>
+                </div>` : ''}
+                ${profileData.music ? `
+                <div class="profile-preview-item">
+                    <span class="preview-label">${state.currentLang === 'ru' ? 'музыка' : 'music'}</span>
+                    <span class="preview-value">${profileData.music}</span>
+                </div>` : ''}
+                ${profileData.mbti ? `
+                <div class="profile-preview-item">
+                    <span class="preview-label">MBTI</span>
+                    <span class="preview-value">${profileData.mbti}</span>
+                </div>` : ''}
+                ${profileData.looking_for ? `
+                <div class="profile-preview-item">
+                    <span class="preview-label">${state.currentLang === 'ru' ? 'ищу' : 'looking for'}</span>
+                    <span class="preview-value">${profileData.looking_for}</span>
+                </div>` : ''}
+            </div>
+            
+            <div class="preview-cta">
+                <h3>${state.currentLang === 'ru' ? 'таких как ты здесь много' : 'people like you are here'}</h3>
+                <p>${state.currentLang === 'ru' ? 'заходи — мэтчи уже ждут' : 'come in — matches are waiting'}</p>
+                <button class="btn-primary" onclick="goToDashboard()">
+                    ${state.currentLang === 'ru' ? 'смотреть мэтчи' : 'see matches'}
+                </button>
+            </div>
+        </div>
+    `;
+
+    screen.innerHTML = previewContent;
+    showScreen('screen-preview');
 }
