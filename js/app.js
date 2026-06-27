@@ -224,8 +224,29 @@ async function sendMessage() {
             if (result.response.includes('погнали в Sx7') ||
                 result.response.includes("let's go to Sx7")) {
                 setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 2000);
+                    // Показываем кнопки выбора
+                    const messages = document.getElementById('chat-messages');
+                    const div = document.createElement('div');
+                    div.className = 'message bot-message';
+                    div.innerHTML = `
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+                <button onclick="window.location.href='dashboard.html'" style="
+                    background:linear-gradient(135deg,#39FF14,#BF00FF);
+                    border:none;padding:12px 20px;border-radius:50px;
+                    color:#080808;font-weight:700;cursor:pointer;font-size:14px;">
+                    ${state.currentLang === 'en' ? 'open map' : 'открыть карту'}
+                </button>
+                <button onclick="showScreen('screen-register')" style="
+                    background:transparent;
+                    border:1px solid #39FF14;padding:12px 20px;border-radius:50px;
+                    color:#39FF14;cursor:pointer;font-size:14px;">
+                    ${state.currentLang === 'en' ? 'fill profile' : 'заполнить анкету'}
+                </button>
+            </div>
+        `;
+                    messages.appendChild(div);
+                    messages.scrollTop = messages.scrollHeight;
+                }, 1000);
             }
 
             if (result.show_preview) {
