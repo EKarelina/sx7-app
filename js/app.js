@@ -221,23 +221,21 @@ async function sendMessage() {
             state.aiHistory = result.history || state.aiHistory;
             addMessage(result.response, 'bot');
 
-            // Переходим в Dashboard после приветствия
             if (result.response.includes('погнали в Sx7') ||
                 result.response.includes("let's go to Sx7")) {
                 setTimeout(() => {
                     window.location.href = 'dashboard.html';
                 }, 2000);
             }
-        }
 
-        if (result.show_preview) {
-            setTimeout(() => showPreviewDemo(), 1500);
+            if (result.show_preview) {
+                setTimeout(() => showPreviewDemo(), 1500);
+            }
         }
-    }
     } catch (error) {
-    hideTyping();
-    addMessage('что-то пошло не так, попробуй снова', 'bot');
-}
+        hideTyping();
+        addMessage('что-то пошло не так, попробуй снова', 'bot');
+    }
 }
 
 function handleEnter(event) {
